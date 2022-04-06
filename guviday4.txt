@@ -1,0 +1,54 @@
+1.)
+How to compare two JSON have the same properties without order
+  <script>
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200)
+        console.log(this.responseType);
+      var a = JSON.stringify(this.responseText);
+      var b= JSON.stringify(this.responseText);
+      let result = Object.entries(a).tostring==Object.entries(b).tostring;
+      console.log("Compare JSON Object Order or Disorder :-",result);
+    }
+    http.open("GET", "https://restcountries.com/v3.1/all");
+    http.send();
+2.)
+Display All The Country Flags
+
+var http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200)
+        console.log(this.responseType);
+      var a= JSON.parse(this.responseText);
+      let task = []
+
+      a.forEach((i) => {
+        task.push(i.flags.png)
+      });
+      console.log(task);
+      task.forEach((img) => {
+        console.log('%c ', 'font-size:500px; background:url(' + img + ') no-repeat;');
+      })
+    }
+    http.open("GET", "https://restcountries.com/v3.1/all");
+    http.send();
+3.)
+country name ,population,region,subregion
+
+ var http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200)
+        console.log(this.responseType);
+      var a = JSON.parse(this.responseText);
+        a.forEach((i) => {
+        console.log("Name of Country :", i.name.common)
+        console.log("Population :", i.population)
+        console.log("Region :", i.region)
+        console.log("SubRegion :", i.subregion)
+        console.log("==============================================");
+
+      });
+
+    }
+    http.open("GET", "https://restcountries.com/v3.1/all");
+    http.send();
